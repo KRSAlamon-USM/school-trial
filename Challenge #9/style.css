@@ -1,0 +1,405 @@
+:root {
+    --bg: #EDF0F4;
+    --surface: #fff;
+    --ink: #18212F;
+    --muted: #5C6676;
+    --line: #D9DEE6;
+    --accent: #1F5FD1;
+    --accent-soft: #E3ECFB;
+    --top-h: 64px;
+    --side-w: 220px;
+}
+ 
+* {
+    box-sizing: border-box;
+}
+ 
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Manrope", Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+}
+ 
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+ 
+.parent {
+    display: grid;
+    grid-template-columns: var(--side-w) 1fr;
+    grid-template-rows: var(--top-h) 1fr;
+    grid-template-areas: "top top" "nav main";
+    min-height: 100vh;
+    transition: grid-template-columns .2s;
+}
+ 
+.parent.collapsed {
+    --side-w: 64px;
+}
+ 
+.top {
+    grid-area: top;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+}
+ 
+.app-brand-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -.01em;
+}
+ 
+.header-right {
+    display: flex;
+    align-items: center;
+}
+ 
+.profile-avatar, .profile-avatar1, .profile-avatar2 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    flex: none;
+}
+ 
+.profile-avatar1 {
+    background: #0F766E;
+}
+ 
+.profile-avatar2 {
+    background: #7C3AED;
+}
+ 
+.navigation {
+    grid-area: nav;
+    background: var(--surface);
+    border-right: 1px solid var(--line);
+    padding: 12px;
+    overflow: hidden;
+}
+ 
+.nav-logo a {
+    display: inline-flex;
+    padding: 8px;
+    border-radius: 8px;
+}
+ 
+.nav-logo a:hover {
+    background: var(--bg);
+}
+ 
+.sidebar-logo {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+ 
+#navLinks {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 4px;
+}
+ 
+#navLinks a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 700;
+    white-space: nowrap;
+}
+ 
+#navLinks a:hover {
+    background: var(--bg);
+    color: var(--ink);
+}
+ 
+#navLinks a[aria-current="page"] {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+ 
+.collapsed #navLinks {
+    display: none;
+}
+ 
+.div3 {
+    grid-area: main;
+    padding: 32px;
+    width: 100%;
+    max-width: 960px;
+}
+ 
+.welcome-text {
+    margin: 0 0 20px;
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    line-height: 1.2;
+}
+ 
+.dashboard-grid {
+    display: grid;
+    gap: 12px;
+}
+ 
+.stat-card, .stat-card1, .chat-row {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+ 
+.stat-card {
+    padding: 20px 24px;
+}
+ 
+.stat-card h4 {
+    margin: 0;
+    max-width: 65ch;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+ 
+.stat-card1 {
+    padding: 0;
+}
+ 
+.favs {
+    display: block;
+    padding: 16px 24px;
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 12px;
+}
+ 
+.favs:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+ 
+.chat-container {
+    display: grid;
+    gap: 8px;
+}
+ 
+.chat-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+}
+ 
+.chat-details {
+    min-width: 0;
+}
+ 
+.chat-name {
+    font-weight: 700;
+}
+ 
+.chat-preview {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 500;
+}
+ 
+@media (max-width: 700px) {
+    .parent, .parent.collapsed {
+        grid-template-columns: 1fr;
+        grid-template-rows: var(--top-h) auto 1fr;
+        grid-template-areas: "top" "nav" "main";
+    }
+ 
+    .navigation {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 8px 12px;
+    }
+ 
+    .nav-logo {
+        display: none;
+    }
+ 
+    #navLinks, .collapsed #navLinks {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+    }
+ 
+    .div3 {
+        padding: 20px 16px;
+    }
+}
+ 
+@media (prefers-reduced-motion:reduce) {
+    .parent {
+        transition: none;
+    }
+}
+ 
+/* ---------- Login pages ---------- */
+ 
+.logintxt, .logintxt2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 20px;
+    padding: 24px;
+    font-family: "Manrope", Arial, sans-serif;
+}
+ 
+.logintxt {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuXZ2_xx4Tz5J0pGA_8HMNKL5GJ9xrTfy7VmGtr7twgrlGWSPS6R2LUz-3rPprOcPv8QzS&s=10");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+ 
+.logintxt2 {
+    background: var(--bg);
+}
+ 
+.logincard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 32px;
+    width: 100%;
+    max-width: 380px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(24, 33, 47, .08);
+}
+ 
+.logincard input, .password-wrapper input {
+    width: 100%;
+    padding: 11px 12px;
+    font: inherit;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink);
+}
+ 
+.logincard input:focus, .password-wrapper input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+ 
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+ 
+.password-wrapper input {
+    padding-right: 44px;
+}
+ 
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+}
+ 
+.loginbtn {
+    width: 100%;
+    padding: 11px 16px;
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+ 
+.loginbtn:hover {
+    background: #184EAE;
+}
+ 
+.indextitle {
+    text-align: center;
+}
+ 
+.noaccount {
+    text-align: center;
+    margin-top: 4px;
+    color: var(--muted);
+}
+ 
+.sign_in {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: none;
+}
+ 
+.sign_in:hover {
+    text-decoration: underline;
+}
+ 
+/* ---------- Other classes from your old stylesheet ---------- */
+ 
+.header-right {
+    gap: 15px;
+}
+ 
+.header-search {
+    width: 180px;
+    padding: 8px 14px;
+    font: inherit;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+}
+ 
+.header-search:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+ 
+.dashboard-grid2 {
+    display: grid;
+    gap: 12px;
+    width: 100%;
+}
+ 
+.stat-card h4 {
+    overflow-wrap: anywhere;
+}
+ 
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+.time {
+    text-align: right;
+}
